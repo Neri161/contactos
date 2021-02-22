@@ -10,11 +10,10 @@ class UsuarioController
         var eli=confirm("Tienes Una cuenta");
         if(eli==true){
             while (menu){
-                
                 var nombre=prompt("Ingresa Tu Nombre");
                 var contrasenia=prompt("Ingresa tu contraseña");
-                if(){
-                     window.location.href = window.location.href + "?w1=" + jsVar1 + "&w2=" + jsVar2;
+                if(nombre!=null || nombre!="" && contrasenia!=null || contrasenia!=""){
+                     window.location.href ="index.php?controller=Usuario&action=VerificarCredenciales&nombre=" + nombre + "&contrasenia=" + contrasenia;
                 }
                 menu=false;
             }
@@ -25,7 +24,8 @@ class UsuarioController
         ';
     }
     function registro(){
-        echo '
+        echo "Ya rifaste";
+       echo '
         <script lang="js">
         var menu=true;
             while (menu){
