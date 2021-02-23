@@ -7,8 +7,8 @@ class UsuarioController
         echo '
         <script lang="js">
         var menu=true;
-        var eli=confirm("Tienes Una cuenta");
-        if(eli==true){
+        var eli=confirm("¿Tienes Una cuenta?");
+        if(eli){
             while (menu){
                 var nombre=prompt("Ingresa Tu Nombre");
                 var contrasenia=prompt("Ingresa tu contraseña");
@@ -18,26 +18,34 @@ class UsuarioController
                 menu=false;
             }
         }else{
-            
+            window.location.href ="index.php?controller=Usuario&action=registro";
         }
         </script>
         ';
     }
     function registro(){
         echo "Ya rifaste";
-       echo '
+        echo '
         <script lang="js">
         var menu=true;
+        var eli=confirm("¿Tienes Una cuenta?");
+        if(!eli){
             while (menu){
-                var nombre=prompt("Ingresa Tu Nombre");
-                var contrasenia=prompt("Ingresa tu contraseña");
-                alert(nombre+" "+contrasenia);
+                var nombre=prompt("Registra Tu Nombre");
+                var contrasenia=prompt("Registra tu contraseña");
+                if(nombre!=null || nombre!="" && contrasenia!=null || contrasenia!=""){
+                     window.location.href ="index.php?controller=Usuario&action=VerificarRegistro&nombre=" + nombre + "&contrasenia=" + contrasenia;
+                }
                 menu=false;
             }
+        }else{
+            window.location.href ="index.php?controller=Usuario&action=login";
+        }
         </script>
         ';
     }
-    function contactos(){
-
+    function VerificarRegistro(){
+        echo $_GET["nombre"];
+        echo $_GET["contrasenia"];
     }
 }
