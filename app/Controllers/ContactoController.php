@@ -5,7 +5,6 @@ use Models\Contacto;
 class ContactoController
 {
         function menu(){
-
             echo '
             <script lang="js">
                 var nombre=prompt("------------MENU------------"+"\n"+
@@ -32,7 +31,6 @@ class ContactoController
                 }
             </script>
             ';
-
         }
         function registrarContacto()
         {

@@ -24,5 +24,4 @@ class Usuario extends Conexion
         $resultado = $pre->get_result();
         return $resultado->fetch_object();
     }
-
 }
