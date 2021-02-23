@@ -1,5 +1,6 @@
 <?php
-
+require 'app/Models/Usuario.php';
+use Models\Usuario;
 
 class UsuarioController
 {
@@ -24,7 +25,13 @@ class UsuarioController
         ';
     }
     function registro(){
-        echo "Ya rifaste";
+        if(isset($_GET["error"])){
+            echo '
+            <script lang="js">
+                alert("El usuario ya esta registrado");
+            </script>
+            ';
+        }
         echo '
         <script lang="js">
         var menu=true;
@@ -34,7 +41,7 @@ class UsuarioController
                 var nombre=prompt("Registra Tu Nombre");
                 var contrasenia=prompt("Registra tu contraseña");
                 if(nombre!=null || nombre!="" && contrasenia!=null || contrasenia!=""){
-                     window.location.href ="index.php?controller=Usuario&action=VerificarRegistro&nombre=" + nombre + "&contrasenia=" + contrasenia;
+                     window.location.href ="index.php?controller=Usuario&action=verificarRegistro&nombre=" + nombre + "&contrasenia=" + contrasenia;
                 }
                 menu=false;
             }
@@ -45,7 +52,31 @@ class UsuarioController
         ';
     }
     function VerificarRegistro(){
-        echo $_GET["nombre"];
-        echo $_GET["contrasenia"];
+        $nombre= $_GET["nombre"];
+        $contrasenia= $_GET["contrasenia"];
+        $verificar=Usuario::verificarRegistro($nombre,$contrasenia);
+        echo var_dump($verificar);
+        if ($verificar==null){
+            $usuario=new Usuario();
+            $usuario->nombre=$nombre;
+            $usuario->contrasenia=$contrasenia;
+            $usuario->crear();
+        }else{
+            header("location:../../../contactos/index.php?controller=Usuario&action=registro&error");
+        }
+
+    }
+    function verificarCredenciales(){
+        $nombre= $_GET["nombre"];
+        $contrasenia= $_GET["contrasenia"];
+        $verificar=Usuario::verificarRegistro($nombre,$contrasenia);
+        if ($verificar){
+            session_start();
+            $_SESSION["idUsuario"]=$verificar->id_Usuario;
+            echo $_SESSION["idUsuario"];
+            header("location:../../../contactos/index.php?controller=Contacto&action=menu");
+        }else{
+            header("location:../../../contactos/index.php?controller=Usuario&action=login");
+        }
     }
 }
