@@ -55,16 +55,15 @@ class UsuarioController
         $nombre= $_GET["nombre"];
         $contrasenia= $_GET["contrasenia"];
         $verificar=Usuario::verificarRegistro($nombre,$contrasenia);
-        echo var_dump($verificar);
         if ($verificar==null){
             $usuario=new Usuario();
             $usuario->nombre=$nombre;
             $usuario->contrasenia=$contrasenia;
             $usuario->crear();
+            header("location:../../../contactos/index.php?controller=Usuario&action=login");
         }else{
             header("location:../../../contactos/index.php?controller=Usuario&action=registro&error");
         }
-
     }
     function verificarCredenciales(){
         $nombre= $_GET["nombre"];

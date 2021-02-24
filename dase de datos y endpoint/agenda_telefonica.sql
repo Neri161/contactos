@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-02-2021 a las 04:24:40
+-- Tiempo de generación: 24-02-2021 a las 05:03:41
 -- Versión del servidor: 10.4.13-MariaDB
 -- Versión de PHP: 7.2.31
 
@@ -32,7 +32,7 @@ CREATE TABLE `contacto` (
   `nombre` varchar(30) NOT NULL,
   `apellido_paterno` varchar(30) NOT NULL,
   `apellido_materno` varchar(30) NOT NULL,
-  `telefono` int(11) NOT NULL,
+  `telefono` text NOT NULL,
   `id_Usuario` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -41,7 +41,7 @@ CREATE TABLE `contacto` (
 --
 
 INSERT INTO `contacto` (`id_Contacto`, `nombre`, `apellido_paterno`, `apellido_materno`, `telefono`, `id_Usuario`) VALUES
-(1, 'Alejandro', 'Alvarez', 'Luis', 2147483647, 1);
+(1, 'Alejandro', 'Alvarez', 'Luis', '2147483647', 1);
 
 -- --------------------------------------------------------
 
@@ -61,7 +61,8 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`id_Usuario`, `nombre`, `contrasenia`) VALUES
 (1, 'Neri', '123456'),
-(2, 'Juan', '987654');
+(2, 'Juan', '987654'),
+(5, 'Anahi', '123456');
 
 --
 -- Índices para tablas volcadas
@@ -88,13 +89,13 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `contacto`
 --
 ALTER TABLE `contacto`
-  MODIFY `id_Contacto` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_Contacto` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_Usuario` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_Usuario` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas
